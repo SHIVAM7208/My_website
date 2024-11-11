@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        /* Style for header and links */
+        header {
+            background-color: #228B22;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main form styling */
+        .login-wrapper {
+            background-color: #f0fff0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 50px auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background-color: #32CD32;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #228B22;
+        }
+
+        .mt-2 {
+            margin-top: 20px;
+        }
+
+        .mt-4 {
+            margin-top: 40px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .col-md-3, .col-md-9, .col-md-12 {
+            flex: 1;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        #forgotPassword {
+            display: none;
+            color: red;
+            cursor: pointer;
+        }
+
+        #message {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to the Selenium Learning Platform</h1>
+    <nav>
+        <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./form.html" target="_blank">Form</a></li>
+            <li><a href="./locatres.html">Locatres</a></li>
+            <li><a href="./Waits.html">Waits</a></li>
+            <li><a href="https://www.trycatchclasses.com/our-courses/">Try Catch</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="login-wrapper">
+    <h1 class="text-center">Login</h1>
+    <form id="userForm" class="">
+        <div style="margin-bottom: 50px;">
+            <h2>Welcome,</h2>
+            <h5>First Step Toward Selenium</h5>
+        </div>
+
+        <div id="userName-wrapper" class="mt-2 row">
+            <div class="col-md-3 col-sm-12">
+                <label class="form-label" id="userName-label">UserName:</label>
+            </div>
+            <div class="col-md-9 col-sm-12">
+                <input required="" autocomplete="off" placeholder="UserName" type="text" id="userName" class="mr-sm-2 form-control" value="">
+            </div>
+        </div>
+
+        <div id="password-wrapper" class="mt-2 row">
+            <div class="col-md-3 col-sm-12">
+                <label class="form-label" id="password-label">Password:</label>
+            </div>
+            <div class="col-md-9 col-sm-12">
+                <input required="" autocomplete="off" placeholder="Password" type="password" id="password" class="mr-sm-2 form-control" value="">
+            </div>
+        </div>
+
+        <div class="mt-2 buttonWrap row">
+            <div class="text-right button">
+                <button id="login" type="button" class="btn btn-primary" onclick="validateForm()">Login</button>
+            </div>
+            <div class="text-right button">
+                <button id="newUser" type="button" class="btn btn-primary">New User</button>
+            </div>
+        </div>
+
+        <div id="output" class="mt-4 row">
+            <div class="col-md-12 col-sm-12" id="message"></div>
+        </div>
+
+        <div id="forgotPassword" style="display:none; color: red; cursor: pointer;" onclick="showPassword()">Forgot Password?</div>
+    </form>
+</div>
+
+<script>
+    function validateForm() {
+        var userName = document.getElementById("userName").value;
+        var password = document.getElementById("password").value;
+        var message = document.getElementById("message");
+        var usernamePattern = /^[A-Za-z]+$/;
+        var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+        // Validate username (alphabets only)
+        if (!usernamePattern.test(userName)) {
+            message.innerHTML = "Username should only contain alphabets.";
+            document.getElementById("forgotPassword").style.display = "none";
+            return false;
+        }
+
+        // Validate password (must contain at least 8 characters with letters and numbers)
+        if (!passwordPattern.test(password)) {
+            message.innerHTML = "Password must contain at least 8 characters, including both letters and numbers.";
+            document.getElementById("forgotPassword").style.display = "block";
+            return false;
+        }
+
+        // Correct password check
+        if (password === "selenium") {
+            message.innerHTML = "Welcome, " + userName + "! Let's learn Selenium together.";
+            document.getElementById("forgotPassword").style.display = "none";
+        } else {
+            message.innerHTML = "Incorrect password.";
+            document.getElementById("forgotPassword").style.display = "block";
+        }
+    }
+
+    function showPassword() {
+        alert("The correct password is:selenium24");
+    }
+</script>
+
+</body>
+</html>
