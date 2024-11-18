@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Form with Validation</title>
+    <link rel="stylesheet" href="./formStyle.css">
+
+</head>
+
+<body>
+    <header>
+        <style>
+            header {
+                background-color: #228B22;
+                color: white;
+               
+                text-align: center;
+            }
+
+            nav ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            nav ul li {
+                display: inline;
+                margin: 0 15px;
+            }
+
+            nav ul li a {
+                color: white;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            nav ul li a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <h1>Welcome to the Selenium Learning Platform</h1>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./form.html" target="_blank">Form</a></li>
+                <li><a href="./locatres.html">Locatres</a></li>
+                <li><a href="./Waits.html">Waits</a></li>
+                <li><a href="#">Try Catch</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="practice-form-wrapper">
+        <h1 class="text-center">Practice Form</h1>
+        <h5>Student Registration Form</h5>
+        <form novalidate id="userForm">
+            <!-- Name -->
+            <div id="userName-wrapper" class="mt-2 row">
+                <div class="col-md-3 col-sm-12"><label class="form-label" id="userName-label">Name</label></div>
+                <div class="col-md-4 col-sm-6"><input required placeholder="First Name" type="text" id="firstName"
+                        class="form-control"></div>
+                <div class="col-md-4 col-sm-6"><input required placeholder="Last Name" type="text" id="lastName"
+                        class="form-control"></div>
+            </div>
+
+            <!-- Email -->
+            <div id="userEmail-wrapper" class="mt-2 row">
+                <div class="col-md-3 col-sm-12"><label class="form-label" id="userEmail-label">Email</label></div>
+                <div class="col-md-9 col-sm-12"><input autocomplete="off" placeholder="name@example.com" type="email"
+                        id="userEmail" class="form-control"></div>
+                <div class="error-message" id="emailError"></div>
+            </div>
+
+            <!-- Mobile -->
+            <div id="userNumber-wrapper" class="mt-2 row">
+                <div class="col-md-3 col-sm-12"><label class="form-label" id="userNumber-label">Mobile</label></div>
+                <div class="col-md-9 col-sm-12"><input required placeholder="Mobile Number" type="tel" id="userNumber"
+                        class="form-control"></div>
+                <div class="error-message" id="mobileError"></div>
+            </div>
+
+            <!-- Date of Birth -->
+            <div id="dateOfBirth-wrapper" class="mt-2 row">
+                <div class="col-md-3 col-sm-12"><label class="form-label" id="dateOfBirth-label">Date of Birth</label>
+                </div>
+                <div class="col-md-9 col-sm-12"><input type="date" id="dateOfBirthInput" class="form-control"></div>
+                <div class="error-message" id="dobError"></div>
+            </div>
+
+            <!-- Terms and Conditions -->
+            <div id="terms-wrapper" class="mt-2 row">
+                <div class="col-md-3 col-sm-12"><label class="form-label" for="terms">Terms and Conditions</label></div>
+                <div class="col-md-9 col-sm-12"><input type="checkbox" id="terms" required> I agree to the terms and
+                    conditions</div>
+            </div>
+
+            <!-- Validation Button -->
+            <div class="mt-4 justify-content-end row">
+                <div class="text-right col-md-2 col-sm-12"><button id="validate" type="button"
+                        class="btn btn-primary">Validate Form</button></div>
+            </div>
+        </form>
+
+        <!-- Additional Inputs Outside the Form -->
+        <div class="mt-4 row">
+            <div class="col-md-3 col-sm-12"><label class="form-label">Confirm Name</label></div>
+            <div class="col-md-4 col-sm-6"><input type="text" placeholder="First Name" class="form-control"></div>
+            <div class="col-md-4 col-sm-6"><input type="text" placeholder="Last Name" class="form-control"></div>
+        </div>
+
+        <!-- Submit Button Outside Form -->
+        <div class="mt-4 text-right">
+            <button id="submitButton" class="btn btn-primary">Submit</button>
+        </div>
+
+        <!-- Thank You Message -->
+        <div id="thankYouMessage" class="thank-you-message"></div>
+    </div>
+
+    <script>
+        // Helper functions for validation
+        function isValidMobileNumber(number) {
+            const mobileRegex = /^[0-9]{10}$/;
+            return mobileRegex.test(number);
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function isValidDOB(dob) {
+            const today = new Date();
+            const selectedDate = new Date(dob);
+            return selectedDate < today;
+        }
+
+        // Validate Form Function
+        document.getElementById('validate').addEventListener('click', function () {
+            const mobileNumber = document.getElementById('userNumber').value;
+            const email = document.getElementById('userEmail').value;
+            const dob = document.getElementById('dateOfBirthInput').value;
+
+            // Clear error messages
+            document.getElementById('mobileError').innerText = '';
+            document.getElementById('emailError').innerText = '';
+            document.getElementById('dobError').innerText = '';
+
+            let isValid = true;
+
+            // Mobile Number Validation
+            if (!isValidMobileNumber(mobileNumber)) {
+                document.getElementById('mobileError').innerText = 'Please enter a valid 10-digit mobile number.';
+                isValid = false;
+            }
+
+            // Email Validation
+            if (!isValidEmail(email)) {
+                document.getElementById('emailError').innerText = 'Please enter a valid email address.';
+                isValid = false;
+            }
+
+            // Date of Birth Validation
+            if (!isValidDOB(dob)) {
+                document.getElementById('dobError').innerText = 'Please enter a valid date of birth (cannot be today or a future date).';
+                isValid = false;
+            }
+
+            // Terms and Conditions Validation
+            const termsChecked = document.getElementById('terms').checked;
+            if (!termsChecked) {
+                alert('Please agree to the terms and conditions.');
+                isValid = false;
+            }
+
+            if (isValid) {
+                document.getElementById('thankYouMessage').innerText = 'Thank you! Your form is validated and ready to submit.';
+            }
+        });
+
+        // Separate Submit Button
+        document.getElementById('submitButton').addEventListener('click', function () {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const message = `Thank You! Welcome ${firstName} ${lastName}, let's learn Selenium together`;
+            document.getElementById('thankYouMessage').innerText = message;
+        });
+    </script>
+</body>
+
+</html>
