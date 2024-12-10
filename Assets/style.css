@@ -1,0 +1,57 @@
+html {
+    scroll-behavior: smooth; /* Smooth scrolling across the site */
+}
+
+.nav-link.active {
+    font-weight: bold;
+    text-decoration: underline;
+    pointer-events: none; /* Makes the link unclickable */
+    color: #000; /* Active link color */
+}
+
+.nav-link:hover {
+    text-decoration: none; /* Remove underline on hover for non-active links */
+}
+
+.navbar-brand img {
+    vertical-align: middle;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #ffffff; /* Ensures visibility when scrolling */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for a clean look */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent background when scrolled */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* More noticeable shadow when scrolled */
+}
+
+.navbar-nav .nav-item {
+    margin: 5px 0;
+}
+
+/* Scroll to Top Button */
+#scrollToTopBtn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease;
+    display: none; /* Initially hidden */
+}
+
+#scrollToTopBtn:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+}
