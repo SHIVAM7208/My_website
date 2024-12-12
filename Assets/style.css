@@ -1,78 +1,55 @@
+/* Root Variables: Define Color Palette */
+:root {
+    --color-primary: #00D6FD;
+    --color-secondary: #001A4B;
+    --color-accent: #3CFF70;
+    --color-light: #04F3CC;
+    --color-warning: #8BF934;
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+
+    /* Text colors */
+    --text-dark: #333;
+    --text-light: #f4f4f9;
+
+    /* Backgrounds */
+    --background-light: #f4f4f9;
+    --background-dark: #001A4B;
+}
+
+/* General Styles */
 html {
-    scroll-behavior: smooth; /* Smooth scrolling across the site */
+    scroll-behavior: smooth;
 }
 
-.nav-link.active {
-    font-weight: bold;
-    text-decoration: underline;
-    pointer-events: none; /* Makes the link unclickable */
-    color: #000; /* Active link color */
-}
-
-.nav-link:hover {
-    text-decoration: none; /* Remove underline on hover for non-active links */
-}
-
-.navbar-brand img {
-    vertical-align: middle;
-}
-
-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: #ffffff; /* Ensures visibility when scrolling */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for a clean look */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-header.scrolled {
-    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent background when scrolled */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* More noticeable shadow when scrolled */
-}
-
-.navbar-nav .nav-item {
-    margin: 5px 0;
-}
-
-/* Scroll to Top Button */
-#scrollToTopBtn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    font-size: 20px;
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    line-height: 40px;
-    border-radius: 50%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transition: opacity 0.3s ease;
-    display: none; /* Initially hidden */
-}
-
-#scrollToTopBtn:hover {
-    background-color: #0056b3;
-    cursor: pointer;
-}
-/* styles.css */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: var(--background-light);
+    color: var(--text-dark);
 }
 
+p {
+    margin: 0 0 1rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+/* Header and Navigation */
 header {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    position: fixed;
-    width: 100%;
+    position: sticky;
     top: 0;
     z-index: 1000;
+    background-color: var(--color-white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .navbar {
@@ -81,104 +58,174 @@ header {
     align-items: center;
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 10px;
 }
 
 .nav-link {
-    color: #fff;
+    color: var(--color-secondary);
     text-decoration: none;
     margin: 0 10px;
     padding: 8px 15px;
     border-radius: 4px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .nav-link.active {
-    background-color: #0056b3;
+    font-weight: bold;
+    text-decoration: underline;
     pointer-events: none;
-    cursor: default;
+    color: var(--color-black);
+    background-color: var(--color-light);
 }
 
 .nav-link:hover {
-    background-color: #0056b3;
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
 
+/* Footer */
+footer {
+    background-color: var(--background-dark);
+    color: var(--color-light);
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer a {
+    color: var(--color-accent);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--color-warning);
+}
+
+/* Buttons */
+button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--color-secondary);
+}
+
+/* Scroll-to-Top Button */
 #scrollToTopBtn {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--color-primary);
+    color: var(--color-white);
     border: none;
-    padding: 10px 15px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    line-height: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     display: none;
-    cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 #scrollToTopBtn:hover {
-    background-color: #0056b3;
+    background-color: var(--color-secondary);
 }
 
-.question {
-    margin: 20px 0;
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
 }
 
-.options {
-    list-style: none;
-    padding: 0;
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--color-white);
+    min-width: 160px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
-.option-button {
+.dropdown:hover .dropdown-content {
     display: block;
-    margin: 10px 0;
-    padding: 10px;
-    background-color: #f4f4f9;
-    border: 2px solid #007bff;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.option-button:hover {
-    background-color: #007bff;
-    color: #fff;
-}
-
-.option-button.correct {
-    background-color: #28a745;
-    color: #fff;
-}
-
-.option-button.incorrect {
-    background-color: #dc3545;
-    color: #fff;
-}
-
-#result {
-    font-size: 1.2em;
-    margin: 20px 0;
-    color: #333;
-}
-.quiz-container ul {
-    list-style: none;
-    padding: 0;
-}
-
-.quiz-container li {
-    padding: 10rem;
-    margin: 10px 0;
-}
-
-label {
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 5px;
+.dropdown-content a {
+    color: var(--text-dark);
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
     transition: background-color 0.3s ease;
 }
 
-label:hover {
-    background-color: #f0f0f0;
+.dropdown-content a:hover {
+    background-color: var(--color-light);
+}
+
+/* Radio Buttons */
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+label.radio-label {
+    display: inline-block;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid var(--color-light);
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+input[type="radio"]:checked + .radio-label {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* Auto-suggestion Dropdown */
+.suggestion-box {
+    position: relative;
+}
+
+.suggestions {
+    display: none;
+    position: absolute;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-light);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    z-index: 1;
+}
+
+.suggestions.visible {
+    display: block;
+}
+
+.suggestions li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.suggestions li:hover {
+    background-color: var(--color-light);
+}
+
+/* Iframe */
+iframe {
+    border: 2px solid var(--color-light);
+    border-radius: 4px;
+    width: 100%;
+    height: 400px;
+}
+
+iframe:hover {
+    border-color: var(--color-primary);
 }
