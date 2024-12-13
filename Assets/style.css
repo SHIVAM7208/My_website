@@ -1,110 +1,340 @@
+/* Root Variables: Define Color Palette */
 :root {
-    /* Colors */
-    --primary-color: #00D6FD;
-    --secondary-color: #001A4B;
-    --success-color: #3CFF70;
-    --accent-color: #04F3CC;
-    --highlight-color: #8BF934;
-    --text-light: #FFFFFF;
-    --text-dark: #001A4B;
+    --color-primary: #00D6FD;
+    --color-secondary: #001A4B;
+    --color-accent: #3CFF70;
+    --color-light: #04F3CC;
+    --color-warning: #8BF934;
+    --color-white: #FFFFFF;
+    --color-black: #000000;
 
-    /* Fonts */
-    --primary-font: 'Roboto', sans-serif;
-    --secondary-font: 'Open Sans', sans-serif;
+    /* Text colors */
+    --text-dark: #333;
+    --text-light: #f4f4f9;
 
-    /* Spacing */
-    --padding: 20px;
-    --border-radius: 5px;
+    /* Backgrounds */
+    --background-light: #f4f4f9;
+    --background-dark: #001A4B;
 }
 
+/* General Styles */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+}
+
+p {
+    margin: 0 0 1rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+/* Header and Navigation */
 header {
-    background-color: var(--secondary-color);
-    color: var(--text-light);
-    padding: var(--padding);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    font-family: var(--primary-font);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--color-white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
-header a {
-    color: var(--primary-color);
+
+header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+}
+
+.nav-link {
+    color: var(--color-secondary);
     text-decoration: none;
+    margin: 0 10px;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
-header a:hover {
-    color: var(--success-color);
+
+.nav-link.active {
+    font-weight: bold;
     text-decoration: underline;
+    pointer-events: none;
+    color: var(--color-black);
+    background-color: var(--color-light);
 }
-.welcome-section {
-    background-color: var(--accent-color);
-    color: var(--secondary-color);
-    padding: 50px var(--padding);
-    text-align: center;
-    border-bottom: 5px solid var(--success-color);
-    font-family: var(--primary-font);
+
+.nav-link:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
-.main-content {
-    background-color: var(--text-light);
-    color: var(--secondary-color);
-    padding: var(--padding);
-    font-family: var(--secondary-font);
-}
-.main-content h2 {
-    color: var(--primary-color);
-}
-.main-content button {
-    background-color: var(--highlight-color);
-    color: var(--text-light);
-    border: none;
-    padding: 10px var(--padding);
-    cursor: pointer;
-    border-radius: var(--border-radius);
-    transition: background-color 0.3s ease;
-}
-.main-content button:hover {
-    background-color: var(--success-color);
-}
+
+/* Footer */
 footer {
-    background-color: var(--secondary-color);
-    color: var(--accent-color);
+    background-color: var(--background-dark);
+    color: var(--color-light);
     text-align: center;
-    padding: var(--padding);
+    padding: 20px 0;
 }
+
 footer a {
-    color: var(--accent-color);
+    color: var(--color-accent);
     text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
 }
+
 footer a:hover {
-    color: var(--primary-color);
-    text-decoration: underline;
+    color: var(--color-warning);
 }
-footer .newsletter-button {
-    background-color: var(--highlight-color);
-    color: var(--text-light);
+
+/* Buttons */
+button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
     border: none;
-    padding: 10px var(--padding);
+    padding: 10px 15px;
+    border-radius: 4px;
     cursor: pointer;
-    border-radius: var(--border-radius);
     transition: background-color 0.3s ease;
 }
-footer .newsletter-button:hover {
-    background-color: var(--success-color);
+
+button:hover {
+    background-color: var(--color-secondary);
 }
+
+/* Scroll-to-Top Button */
 #scrollToTopBtn {
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    border: none;
-    font-size: 20px;
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    line-height: 40px;
-    border-radius: 50%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     position: fixed;
     bottom: 20px;
     right: 20px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     display: none;
-    cursor: pointer;
     transition: background-color 0.3s ease;
 }
+
 #scrollToTopBtn:hover {
-    background-color: var(--success-color);
+    background-color: var(--color-secondary);
 }
+.ad-bar {
+    background-color: #f9f9f9; /* Light background to distinguish ads */
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+fieldset {
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.inputs {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.btn-style {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-style:hover {
+    background-color: #45a049;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.table-display {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.table-display th, .table-display td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.table-display th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.mouse-hover {
+    position: relative;
+    display: inline-block;
+}
+
+.mouse-hover-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.mouse-hover-content a {
+    color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+}
+
+.mouse-hover-content a:hover {
+    background-color: #ddd;
+}
+
+.mouse-hover:hover .mouse-hover-content {
+    display: block;
+}
+
+.footer-container {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.footer-table {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.footer-item h3 {
+    color: #4CAF50;
+    margin: 5px 0;
+}
+
+.footer-item a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-item a:hover {
+    text-decoration: underline;
+}
+
+.row1{
+    
+    display: flex;
+    width: 100%;
+
+}
+
+.elment{
+    width: auto;
+    flex: 1;
+}
+
+.element1{
+    display: flex;
+    justify-content: center;
+}
+
+        /* The container <div> - needed to position the mouse-hover content */
+
+        .mouse-hover {
+            /* position: relative;
+            display: inline-block; */
+        }
+
+        /* mouse-hover Content (Hidden by Default) */
+
+        .mouse-hover-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Links inside the mouse-hover */
+
+        .mouse-hover-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of mouse-hover links on hover */
+
+        .mouse-hover-content a:hover {
+            background-color: #f1f1f1
+        }
+
+        /* Show the mouse-hover menu on hover */
+
+        .mouse-hover:hover .mouse-hover-content {
+            display: block;
+        }
+
+        /* Change the background color of the mouse-hover button when the mouse-hover content is shown */
+
+        .mouse-hover:hover .dropbtn {
+            background-color: #3e8e41;
+        }
