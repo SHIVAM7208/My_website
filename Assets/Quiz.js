@@ -1,4 +1,4 @@
-const quizdata =[
+const quizdata = [
     {
         question: "Which Selenium WebDriver method would you use to switch control from the current window to a different window?",
         options: ["getWindowHandles", "switchToFrame", "getWindowHandle", "switchToWindow"],
@@ -152,19 +152,21 @@ function renderQuiz() {
         const questionDiv = document.createElement("div");
         questionDiv.classList.add("question");
         questionDiv.innerHTML = `
-            <h2>${index + 1}. ${item.question}</h2>
-            <ul>
+        <div class="container">
+          <h2>${index + 1}. ${item.question}</h2>
+            <ul >
                 ${item.options
-                    .map(
-                        (option, idx) =>
-                            `<li class="mcq-style">
+                .map(
+                    (option, idx) =>
+                        `<li class="mcq-style">
                                 <input type="radio" name="q${index}" id="q${index}-option${idx}" value="${option}">
                                 <label for="q${index}-option${idx}">${option}</label>
                              </li>`
-                    )
-                    .join("")}
+                )
+                .join("")}
             </ul>
-        `;
+        </div>
+         `;
         quizContainer.appendChild(questionDiv);
     });
 }
@@ -173,6 +175,6 @@ submitButton.addEventListener("click", () => {
     console.log("Quiz submitted!");
 });
 
-window.addEventListener('load',renderQuiz);
+window.addEventListener('load', renderQuiz);
 
 

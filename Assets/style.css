@@ -52,6 +52,32 @@ header.scrolled {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+
+.ad-bar-left {
+    left:2%;
+    width: 12rem;
+    height: 800px;
+    background-color: #f9f9f9; /* Light background to distinguish ads */
+    border: 1px solid red;
+    padding: 10px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.ad-bar-right{
+    right:2%;
+     width: 12rem;
+    height: 800px;
+    background-color: #f9f9f9; /* Light background to distinguish ads */
+    border: 1px solid red;
+    padding: 10px;
+    text-align: center;
+    overflow: hidden;
+}
+
+#submit{
+    margin:5rem;
+}
 .navbar {
     display: flex;
     justify-content: flex-end;
@@ -138,13 +164,7 @@ button:hover {
 #scrollToTopBtn:hover {
     background-color: var(--color-secondary);
 }
-.ad-bar {
-    background-color: #f9f9f9; /* Light background to distinguish ads */
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-    width: 100%;
-}
+
 
 /* General Styles */
 body {

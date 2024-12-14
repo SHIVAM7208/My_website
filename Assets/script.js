@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    loadComponent("footer", "components/footer.html");
+    loadComponent("footer", "./components/footer.html");
     loadComponent("footer1", "components/footer1.html");
     loadComponent("ad-bar", "components/ad-bar.html");
 });
@@ -264,9 +264,10 @@ function showPassword()
 function downloadPDF() {
     const element = document.getElementById('content');
     html2pdf().from(element).set({
-        margin: 1,
+        
         filename: 'Selenium_Cheatsheet.pdf',
         html2canvas: { scale: 2 },
         jsPDF: { orientation: 'portrait', unit: 'in', format: 'letter', compressPDF: true }
     }).save();
 }
+
