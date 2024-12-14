@@ -54,9 +54,7 @@ header.scrolled {
 
 
 .ad-bar-left {
-    left:2%;
-    width: 12rem;
-    height: 800px;
+    height: auto;
     background-color: #f9f9f9; /* Light background to distinguish ads */
     border: 1px solid red;
     padding: 10px;
@@ -65,9 +63,8 @@ header.scrolled {
 }
 
 .ad-bar-right{
-    right:2%;
-     width: 12rem;
-    height: 800px;
+   
+    height: auto;
     background-color: #f9f9f9; /* Light background to distinguish ads */
     border: 1px solid red;
     padding: 10px;

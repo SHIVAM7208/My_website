@@ -14,12 +14,11 @@
 <body>
   <!-- Dynamic Header -->
     <div id="header"></div>
-    <div class="ad-bar">
-        <div id="ad-bar" class="ad-bar-left"></div>
-        <!-- Right Ad Bar -->
-        <div id="ad-bar" class="ad-bar-right"></div>
-    </div>
-
+    <div class="container-fluid row">
+      
+        <div id="ad-bar" class="ad-bar-left col-md-2"></div>
+                 
+        <div class="main-content col-md-8">
  <!-- Main Content -->
 <div class="card mx-auto my-5" style="max-width: 500px;">
     <div class="card-body">
@@ -60,6 +59,8 @@
             <div id="forgotPassword" style="display:none; color: red; cursor: pointer;" onclick="showPassword()">Forgot Password?</div>
         </form>
     </div>
+</div>
+<div id="ad-bar" class="ad-bar-right col-md-2"></div>
 </div>
 <div id="footer1"></div>
 <div id="footer"></div>
