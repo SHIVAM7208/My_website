@@ -357,6 +357,13 @@ legend {
         }
 
          /* Container for the tree */
+         /* First layer pre-opened */
+    .tree ul.pre-open {
+        display: block; /* Display the first layer */
+      }
+
+
+
     .tree-container {
         background-color: #ffffff;
         padding: 20px;
