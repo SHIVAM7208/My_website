@@ -145,7 +145,6 @@ button:hover {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: var(--color-primary);
     color: var(--color-white);
     border: none;
     width: 40px;
@@ -573,4 +572,17 @@ form {
 .MCQresult {
     text-align: center;
     margin-top: 40px;
+}
+#scrollToTopBtn {
+    color: inherit;
+    content: "\f062";
+    display: inline-block;
+    font: normal normal normal 16px/1 FontAwesome;
+    font-size: 16px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.71428571;
+    margin-right: 4px;
+    text-rendering: auto;
+    transform: translate(0, 0);
 }
