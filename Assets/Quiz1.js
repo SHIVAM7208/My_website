@@ -211,3 +211,32 @@ function calculateScore() {
 submitButton.addEventListener('click', calculateScore);
 
 loadQuiz();
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const submitBtn = document.getElementById("submit");
+    const resultDiv = document.getElementById("result");
+    const scorePopup = document.getElementById("scorePopup");
+    const scoreText = document.getElementById("scoreText");
+    const closePopup = document.getElementById("closePopup");
+
+    // Example quiz logic: Calculate score
+
+    // Show score pop-up
+    function showPopup(score) {
+        scoreText.textContent = `You scored: ${score} points!`;
+        scorePopup.style.display = "flex"; // Show the pop-up
+    }
+
+    // Close the pop-up
+    closePopup.addEventListener("click", () => {
+        scorePopup.style.display = "none";
+    });
+
+    // Submit Button Logic
+    submitBtn.addEventListener("click", function () {
+        const score = calculateScore();
+        resultDiv.innerText = `You scored ${score} points!`;
+        showPopup(score); // Show score pop-up
+    });
+});
