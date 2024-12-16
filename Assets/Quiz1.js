@@ -1,4 +1,4 @@
-const quizdata = [
+const quizData = [
     {
         question: "Which Selenium WebDriver method would you use to switch control from the current window to a different window?",
         options: ["getWindowHandles", "switchToFrame", "getWindowHandle", "switchToWindow"],
@@ -140,41 +140,74 @@ const quizdata = [
         ],
         correct: "No, they do not follow the Single Responsibility Principle"
     }
-]
+];
 
-const quizContainer = document.getElementById("quiz");
-const submitButton = document.getElementById("submit");
-const resultContainer = document.getElementById("result");
+const quizContainer = document.getElementById('quiz');
+const submitButton = document.getElementById('submit');
+const resultContainer = document.getElementById('result');
 
-// Render the quiz
-function renderQuiz() {
-    quizdata.forEach((item, index) => {
-        const questionDiv = document.createElement("div");
-        questionDiv.classList.add("question");
-        questionDiv.innerHTML = `
-        <div class="container">
-          <h2>${index + 1}. ${item.question}</h2>
-            <ul >
-                ${item.options
-                .map(
-                    (option, idx) =>
-                        `<li class="mcq-style">
-                                <input type="radio" name="q${index}" id="q${index}-option${idx}" value="${option}">
-                                <label for="q${index}-option${idx}">${option}</label>
-                             </li>`
-                )
-                .join("")}
-            </ul>
-        </div>
-         `;
+// Shuffle function for options
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function loadQuiz() {
+    quizContainer.innerHTML = '';
+    quizData.forEach((quizItem, quizIndex) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.classList.add('question');
+
+        const questionTitle = document.createElement('h3');
+        questionTitle.innerText = `${quizIndex + 1}. ${quizItem.question}`;
+        questionDiv.appendChild(questionTitle);
+
+        const optionsList = document.createElement('ul');
+        optionsList.classList.add('options');
+
+        const options = [...quizItem.options];
+        shuffle(options);
+
+        options.forEach(option => {
+            const optionItem = document.createElement('li');
+            optionItem.innerText = option;
+            optionItem.addEventListener('click', () => selectOption(optionItem, quizItem.correct));
+            optionsList.appendChild(optionItem);
+        });
+
+        questionDiv.appendChild(optionsList);
         quizContainer.appendChild(questionDiv);
     });
 }
 
-submitButton.addEventListener("click", () => {
-    console.log("Quiz submitted!");
-});
+function selectOption(optionElement, correctAnswer) {
+    const siblings = optionElement.parentNode.children;
+    for (let sibling of siblings) {
+        sibling.classList.remove('correct', 'incorrect');
+    }
 
-window.addEventListener('load', renderQuiz);
+    if (optionElement.innerText === correctAnswer) {
+        optionElement.classList.add('correct');
+    } else {
+        optionElement.classList.add('incorrect');
+    }
+}
 
+function calculateScore() {
+    const selectedOptions = document.querySelectorAll('.options li');
+    let score = 0;
 
+    selectedOptions.forEach(option => {
+        if (option.classList.contains('correct')) {
+            score++;
+        }
+    });
+
+    resultContainer.innerHTML = `You got ${score} out of ${quizData.length} correct!`;
+}
+
+submitButton.addEventListener('click', calculateScore);
+
+loadQuiz();
