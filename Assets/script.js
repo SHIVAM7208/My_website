@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     loadComponent("footer", "./components/footer.html");
     loadComponent("footer1", "components/footer1.html");
     loadComponent("ad-bar", "components/ad-bar.html");
-    loadComponent("scrollToTopBtn", "components/scrollToTopBtn.html");
     
 
     // Scroll-to-top button visibility
