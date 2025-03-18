@@ -1,13 +1,13 @@
 // script.js
 document.addEventListener("DOMContentLoaded", () => {
     // Dynamically load components
-    loadComponent("header", "components/header.html", () => {
+    loadComponent("header", "/components/header.html", () => {
         highlightActiveLink();
     });
 
-    loadComponent("footer", "./components/footer.html");
-    loadComponent("footer1", "components/footer1.html");
-    loadComponent("ad-bar", "components/ad-bar.html");
+    loadComponent("footer", "/components/footer.html");
+    loadComponent("footer1", "/components/footer1.html");
+    loadComponent("ad-bar", "/components/ad-bar.html");
     
 
     // Scroll-to-top button visibility
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Form validation
-    document.getElementById('validate').addEventListener('click', validateForm);
+    // document.getElementById('validate').addEventListener('click', validateForm);
     document.getElementById('submitButton').addEventListener('click', submitForm);
 
     // Waits functionality
