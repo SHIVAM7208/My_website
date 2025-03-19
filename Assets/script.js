@@ -1,44 +1,42 @@
 // script.js
-document.addEventListener("DOMContentLoaded", () => {
-    // Dynamically load components
-    loadComponent("header", "/components/header.html", () => {
-        highlightActiveLink();
-    });
 
-    loadComponent("footer", "/components/footer.html");
-    loadComponent("footer1", "/components/footer1.html");
-    loadComponent("ad-bar", "/components/ad-bar.html");
-    
-
-    // Scroll-to-top button visibility
-    window.onscroll = toggleScrollToTopButton;
-
-    // Scroll-to-top functionality
-    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-    if (scrollToTopBtn) {
-        scrollToTopBtn.addEventListener("click", scrollToTop);
+async function loadComponent(id, file, callback) {
+    try {
+        const response = await fetch(file);
+        if (response.ok) {
+            document.getElementById(id).innerHTML = await response.text();
+            if (callback) callback(); // Execute callback after content loads
+        } else {
+            console.error(`Failed to load ${file}`);
+        }
+    } catch (error) {
+        console.error(`Error loading ${file}:`, error);
     }
+}
 
-    // Form validation
-    // document.getElementById('validate').addEventListener('click', validateForm);
-    document.getElementById('submitButton').addEventListener('click', submitForm);
+document.addEventListener("DOMContentLoaded", async () => {
+    // Load header first, then set up event listeners
+    await loadComponent("header", "/components/header.html", setupHeaderLinks);
+    await loadComponent("footer", "/components/footer.html");
+    await loadComponent("footer1", "/components/footer1.html");
+    await loadComponent("ad-bar", "/components/ad-bar.html");
 
-    // Waits functionality
-    document.getElementById('Wcompleted').addEventListener('click', handleWaits);
+    // Scroll-to-top button functionality
+    document.getElementById("scrollToTopBtn")?.addEventListener("click", scrollToTop);
 
-    // Download PDF functionality
-    document.getElementById('downloadPDFBtn').addEventListener('click', downloadPDF);
+    // Other functionalities
+    document.getElementById('submitButton')?.addEventListener('click', submitForm);
+    document.getElementById('Wcompleted')?.addEventListener('click', handleWaits);
+    document.getElementById('downloadPDFBtn')?.addEventListener('click', downloadPDF);
 });
 
-/**
- * Highlights the active link in the header based on the current page
- */
-function highlightActiveLink() {
-    const page = window.location.pathname.split("/").pop();
-    const links = document.querySelectorAll(".nav-link");
-    links.forEach(link => {
-        if (link.getAttribute("href").endsWith(page)) {
-            link.classList.add("active");
+// ✅ Use Event Delegation for Navigation Links
+function setupHeaderLinks() {
+    document.getElementById("header").addEventListener("click", function (event) {
+        const target = event.target.closest("a.nav-link"); // Ensure it is a navigation link
+        if (target && target.href) {
+            event.preventDefault(); // Prevent default anchor behavior
+            window.location.href = target.getAttribute("href"); // Redirect manually
         }
     });
 }
