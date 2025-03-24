@@ -190,3 +190,20 @@ function toggle(element) {
     // Toggle 'open' class
     element.parentNode.classList.toggle('open');
   }
+  function displayAlert() {
+    const name = document.querySelector('input[placeholder="Enter Your Name"]').value;
+    if (name) {
+        alert(`Hello, ${name}!`);
+    } else {
+        alert('Please enter your name.');
+    }
+}
+
+function displayConfirm() {
+    const name = document.querySelector('input[placeholder="Enter Your Name"]').value;
+    if (name) {
+        confirm(`Is your name ${name}?`);
+    } else {
+        confirm('Please enter your name.');
+    }
+}
