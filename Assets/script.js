@@ -28,6 +28,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById('submitButton')?.addEventListener('click', submitForm);
     document.getElementById('Wcompleted')?.addEventListener('click', handleWaits);
     document.getElementById('downloadPDFBtn')?.addEventListener('click', downloadPDF);
+    document.getElementById('autocomplete')?.addEventListener('click', setupAutoSuggestion);
+    document.getElementById('mousehover')?.addEventListener('mouseenter', setupHoverMenu);
+document.getElementById('goToTop')?.addEventListener('click', setupScrollToTop);
+document.getElementById('reloadPage')?.addEventListener('click', setupPageReload);
+
 });
 
 // ✅ Use Event Delegation for Navigation Links
@@ -193,9 +198,9 @@ function toggle(element) {
   function displayAlert() {
     const name = document.querySelector('input[placeholder="Enter Your Name"]').value;
     if (name) {
-        alert(`Hello, ${name}!`);
+        alert(`Selenium is your, ${name}!`);
     } else {
-        alert('Please enter your name.');
+        alert('are you ready to learn selenium.');
     }
 }
 
@@ -206,4 +211,84 @@ function displayConfirm() {
     } else {
         confirm('Please enter your name.');
     }
+}
+
+function setupAutoSuggestion() {
+    const languages = [
+        "JavaScript", "Python", "Java", "C#", "C++", "Ruby", "Swift", "Go", "Kotlin", "Rust",
+        "PHP", "TypeScript", "Perl", "Scala", "Haskell", "Lua", "Dart", "Objective-C", "R", "Elixir",
+        "Clojure", "F#", "Shell", "Bash", "SQL", "HTML", "CSS", "MATLAB", "Groovy", "VHDL"
+    ];
+
+    const inputField = document.getElementById("autocomplete");
+    const suggestionBox = document.createElement("ul");
+
+    function createSuggestionBox() {
+        suggestionBox.setAttribute("id", "suggestion-list");
+        suggestionBox.style.position = "absolute";
+        suggestionBox.style.border = "1px solid #ccc";
+        suggestionBox.style.listStyle = "none";
+        suggestionBox.style.padding = "5px";
+        suggestionBox.style.width = inputField.offsetWidth + "px";
+        suggestionBox.style.backgroundColor = "#fff";
+        suggestionBox.style.zIndex = "1000";
+        suggestionBox.style.display = "none";
+        inputField.parentNode.appendChild(suggestionBox);
+    }
+
+    function updateSuggestions() {
+        const query = inputField.value.toLowerCase();
+        suggestionBox.innerHTML = "";
+        if (!query) {
+            suggestionBox.style.display = "none";
+            return;
+        }
+
+        const filteredLanguages = languages.filter(lang => lang.toLowerCase().includes(query));
+        filteredLanguages.forEach(lang => {
+            const item = document.createElement("li");
+            item.textContent = lang;
+            item.style.padding = "5px";
+            item.style.cursor = "pointer";
+            item.addEventListener("click", function () {
+                inputField.value = lang;
+                suggestionBox.style.display = "none";
+            });
+            suggestionBox.appendChild(item);
+        });
+
+        suggestionBox.style.display = filteredLanguages.length > 0 ? "block" : "none";
+    }
+
+    function hideSuggestions(event) {
+        if (event.target !== inputField) {
+            suggestionBox.style.display = "none";
+        }
+    }
+
+    createSuggestionBox();
+    inputField.addEventListener("input", updateSuggestions);
+    document.addEventListener("click", hideSuggestions);
+}
+function setupHoverMenu() {
+    const hoverMenu = document.getElementById("hoverMenu");
+    if (hoverMenu) {
+        hoverMenu.style.display = "block";
+
+        hoverMenu.addEventListener("mouseleave", () => {
+            setTimeout(() => {
+                hoverMenu.style.display = "none";
+            }, 500);
+        });
+    }
+}
+
+function setupScrollToTop(event) {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function setupPageReload(event) {
+    event.preventDefault();
+    location.reload();
 }

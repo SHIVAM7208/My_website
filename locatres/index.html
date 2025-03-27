@@ -52,28 +52,45 @@
                     <hr>
             
                     <section class="row1">
-                        <fieldset class="elment">
-                            <legend>Switch Window </legend>
-                            <button onclick="openWindow()">Open Window</button>
+                        <fieldset class="element">
+                            <legend>Mouse Hover</legend>
+                            <div class="mouse-hover">
+                                <button id="mousehover" class="btn btn-primary">Mouse Hover</button>
+                                <div class="mouse-hover-content" id="hoverMenu">
+                                    <a href="#" id="goToTop">Top</a>
+                                    <a href="#" id="reloadPage">Reload</a>
+                                </div>
+                            </div>
                         </fieldset>
+                      <!--  <hr>
+
+                        <fieldset class="elment">
+                            <legend>Mouse Hover </legend>
+                            <div class="mouse-hover">
+                                <button id="mousehover" class="btn btn-primary">Mouse Hover</button>
+                            <div class="mouse-hover-content">
+                                <a href="#top">Top</a>
+                                <a href="#">Reload</a>
+                            </div>
+                        </fieldset>-->
             
                         
 
                         <fieldset class="elment">
-                            <legend>Suggestion Class </legend>
-                            <input type="text" id="autocomplete" placeholder="Type to Select Countries">
-                        </fieldset>
+                            <legend>Find your code Languages? </legend>
+                             <input type="text" id="autocomplete" placeholder="Type to Select Programming Languages">
+                            </fieldset>
 
 
-                        <!--
+                       
                         <fieldset class="elment">
-                            <legend>Switch To Alert </legend>
+                            <legend>Tell me your Name</legend>
                             <input type="text" placeholder="Enter Your Name">
                             <button onclick="displayAlert()">Alert</button>
                             <button onclick="displayConfirm()">Confirm</button>
                         </fieldset>
                     </section>
-            
+             <!--
                     <section>
                         <div>
                             <fieldset>
@@ -110,31 +127,23 @@
                                     <input type="text" placeholder="Hide/Show Example">
                                 </fieldset>
                             </div>
-                            -->
-            
                             
                             <fieldset class="elment">
-                                <legend>Mouse Hover </legend>
-                                <div class="mouse-hover">
-                                    <button id="mousehover" class="btn btn-primary">Mouse Hover</button>
-                                <div class="mouse-hover-content">
-                                    <a href="#top">Top</a>
-                                    <a href="#">Reload</a>
-                                </div>
-                            </fieldset>
-            
-            
-             <!--
+                            <legend>Switch Window </legend>
+                            <button onclick="openWindow()">Open Window</button>
+                        </fieldset>
+
+                        
                             <fieldset class="elment">
                                 <legend>Calendar </legend>
                                 <input type="date">
-                            </fieldset> -->
-                        </section>
+                            </fieldset> 
+                        </section> -->
                         <hr>
                         <section class="row1">
                             <fieldset class="elment">
                                 <legend>I-Frame</legend>
-                                <iframe src="/form/index.html" ></iframe>
+                                <iframe id="iframe" src="https://www.saucedemo.com/" ></iframe>
                                <!--<iframe src="./form.html" ></iframe> -->
                             </fieldset>
                         </section>
